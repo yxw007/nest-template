@@ -7,7 +7,7 @@ export type User = {
 };
 
 @Injectable()
-export class UsersService {
+export class UserService {
   private readonly users = [
     {
       userId: 1,

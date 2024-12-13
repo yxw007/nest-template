@@ -1,11 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
-import { UsersService } from './users.service';
+import { UserService } from './user.service';
 import { ConfigService } from '@nestjs/config';
-import { Public } from 'src/auth/decorators/public.decorator';
+import { Public } from '../auth/decorators/public.decorator';
 
-@Controller()
+@Controller("users")
 export class UserController {
-  constructor(private readonly appService: UsersService, private configService: ConfigService) { }
+  constructor(private readonly appService: UserService, private configService: ConfigService) { }
 
   @Get("/hello")
   @Public()

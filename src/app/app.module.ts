@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { configSchema, configuration } from '../../config/configuration';
 import { normalizePath } from 'src/common/utils';
 import { AuthModule } from '../auth/auth.module';
-import { UsersModule } from 'src/users/users.module';
+import { UserModule } from 'src/users/user.module';
 
 @Module({
   imports: [
@@ -14,7 +14,7 @@ import { UsersModule } from 'src/users/users.module';
       validationSchema: configSchema,
     }),
     AuthModule,
-    UsersModule,
+    UserModule,
   ],
 })
 export class AppModule { }
