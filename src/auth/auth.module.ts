@@ -5,23 +5,18 @@ import { AuthController } from './auth.controller';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { UserModule } from 'src/users/user.module';
-import { ConfigModule } from '@nestjs/config';
-import { normalizePath } from 'src/common/utils';
-import { configSchema, configuration } from 'config/configuration';
+import { ConfigService } from '@nestjs/config';
 
 @Module({
 	imports: [
-		ConfigModule.forRoot({
-			isGlobal: true,
-			envFilePath: normalizePath(`${process.cwd()}/config/env/.env.${process.env.NODE_ENV}`),
-			load: [configuration],
-			validationSchema: configSchema,
-		}),
 		UserModule,
-		JwtModule.register({
+		JwtModule.registerAsync({
 			global: true,
-			secret: process.env.JWT_SECRET,
-			signOptions: { expiresIn: process.env.JWT_EXPIRES_IN },
+			useFactory: (configService: ConfigService) => ({
+				secret: configService.get<string>("JWT_SECRET"),
+				signOptions: { expiresIn: configService.get<string>("JWT_EXPIRES_IN") },
+			}),
+			inject: [ConfigService],
 		}),
 	],
 	providers: [
