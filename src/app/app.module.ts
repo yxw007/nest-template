@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { UserController } from '../users/users.controller';
-import { UserService } from '../users/users.service';
 import { ConfigModule } from '@nestjs/config';
 import { configSchema, configuration } from '../../config/configuration';
 import { normalizePath } from 'src/common/utils';
+import { AuthModule } from '../auth/auth.module';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
   imports: [
@@ -12,9 +12,9 @@ import { normalizePath } from 'src/common/utils';
       envFilePath: normalizePath(`${process.cwd()}/config/env/.env.${process.env.NODE_ENV}`),
       load: [configuration],
       validationSchema: configSchema,
-    })
+    }),
+    AuthModule,
+    UsersModule,
   ],
-  controllers: [UserController],
-  providers: [UserService],
 })
 export class AppModule { }

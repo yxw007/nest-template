@@ -13,7 +13,7 @@ export class LoggingInterceptor implements NestInterceptor {
 		const { method, url } = request;
 		const now = Date.now();
 
-		this.logger.log(`Incoming Request: <---------------------------------------------`);
+		this.logger.log(`Incoming Request: <=============================================`);
 		this.logger.log(`Incoming Request: ${method} ${url}`);
 		if (NODE_ENV === "development") {
 			this.logger.log(`Request Body: ${JSON.stringify(request.body)}`);
@@ -25,7 +25,7 @@ export class LoggingInterceptor implements NestInterceptor {
 			.pipe(
 				tap(() => {
 					this.logger.log(`Outgoing Response: ${method} ${url} - ${Date.now() - now}ms`);
-					this.logger.log(`Outgoing Response: --------------------------------------------->`);
+					this.logger.log(`Outgoing Response: =============================================>`);
 				}),
 			);
 	}
