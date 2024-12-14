@@ -7,7 +7,6 @@ import { AuthModule } from '../auth/auth.module';
 import { UserModule } from 'src/user/user.module';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
-
 @Module({
   imports: [
     ConfigModule.forRoot({
