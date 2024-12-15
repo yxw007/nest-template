@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CreateUserBO } from './bo';
 import { User } from './user.entity';
@@ -18,11 +18,19 @@ export class UserService {
   }
 
   async findOneByUsername(username: string): Promise<User | undefined> {
-    return this.userRepository.findOneBy({ username });
+    const user = await this.userRepository.findOneBy({ username });
+    if (!user) {
+      throw new NotFoundException(`User with username ${username} not found`);
+    }
+    return user;
   }
 
   async findOne(userId: number): Promise<User | undefined> {
-    return this.userRepository.findOneBy({ userId });
+    const user = await this.userRepository.findOneBy({ userId });
+    if (!user) {
+      throw new NotFoundException(`User with id ${userId} not found`);
+    }
+    return user;
   }
 
   create(userDto: CreateUserBO): Promise<User> {
@@ -33,7 +41,10 @@ export class UserService {
   }
 
   async remove(userId: number): Promise<void> {
-    await this.userRepository.delete(userId);
+    const res = await this.userRepository.delete(userId);
+    if (res.affected === 0) {
+      throw new NotFoundException(`User with id ${userId} not found`);
+    }
   }
 }
 

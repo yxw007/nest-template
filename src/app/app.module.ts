@@ -6,6 +6,8 @@ import { normalizePath } from 'src/common/utils';
 import { AuthModule } from '../auth/auth.module';
 import { UserModule } from 'src/user/user.module';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { APP_FILTER } from '@nestjs/core';
+import { HttpExceptionFilter } from '../common/filter/http.exception.filter';
 
 @Module({
   imports: [
@@ -33,5 +35,11 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
     AuthModule,
     UserModule,
   ],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter,
+    },
+  ]
 })
 export class AppModule { }
