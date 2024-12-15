@@ -8,6 +8,8 @@
   <p align="center">An API Template project built based on Nest.js is convenient for you to quickly get started with developing API interfaces 🚀</p>
   </p>
 
+English | [简体中文](README_zh-CN.md)
+
 ## ✨ Features
 
 - [x] Support: Multi-environment configuration

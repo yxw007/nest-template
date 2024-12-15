@@ -1,3 +1,4 @@
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
@@ -7,6 +8,8 @@
 
   <p align="center">一个基于Nest.js搭建的API Template项目，方便大家快速上手开发api接口</p>
   </p>
+
+简体中文 | [English](README.md)
 
 ## ✨ 特性
 
