@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CreateUserBO } from './bo';
 import { User } from './user.entity';
@@ -33,11 +33,15 @@ export class UserService {
     return user;
   }
 
-  create(userDto: CreateUserBO): Promise<User> {
+  async create(userDto: CreateUserBO): Promise<Boolean> {
+    if (await this.findOneByUsername(userDto.username)) {
+      throw new ConflictException(`User with username ${userDto.username} already exists`);
+    }
     const user = new User();
     user.username = userDto.username;
     user.password = userDto.password;
-    return this.userRepository.save(user);
+    const res = await this.userRepository.save(user);
+    return res != null;
   }
 
   async remove(userId: number): Promise<void> {

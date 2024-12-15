@@ -16,7 +16,7 @@ export class UserController {
 
   @Public()
   @Post("")
-  create(@Body() user: CreateUserBO): Promise<User> {
+  create(@Body() user: CreateUserBO): Promise<Boolean> {
     return this.userService.create(user);
   }
 
