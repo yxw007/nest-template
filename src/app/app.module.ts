@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ScheduleModule } from "@nestjs/schedule";
 import { configSchema, configuration } from '../../config/configuration';
 import { normalizePath } from 'src/common/utils';
 import { AuthModule } from '../auth/auth.module';
 import { UserModule } from 'src/user/user.module';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { APP_FILTER } from '@nestjs/core';
-import { HttpExceptionFilter } from '../common/filter/http.exception.filter';
+import { HttpExceptionFilter } from '../common/filters/http.exception.filter';
+import { TaskModule } from '../common/tasks/task.module';
 
 @Module({
   imports: [
@@ -32,6 +34,8 @@ import { HttpExceptionFilter } from '../common/filter/http.exception.filter';
       }),
       inject: [ConfigService],
     }),
+    ScheduleModule.forRoot({ cronJobs: true }),
+    TaskModule,
     AuthModule,
     UserModule,
   ],

@@ -18,6 +18,7 @@ English | [简体中文](README_zh-CN.md)
 - [x] Supported: HTTP exception filter
 - [x] Integration: MySQL
 - [x] Integration: Request parameter verification
+- [x] In the tank：Scheduled tasks
 - [ ] Perfect: Test cases
 
 ## 🛠️ Install dependencies
