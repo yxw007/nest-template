@@ -10,6 +10,7 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { APP_FILTER } from '@nestjs/core';
 import { HttpExceptionFilter } from '../common/filters/http.exception.filter';
 import { TaskModule } from '../common/tasks/task.module';
+import { GlobalCacheModule } from 'src/common/cache/cache.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { TaskModule } from '../common/tasks/task.module';
       }),
       inject: [ConfigService],
     }),
+    GlobalCacheModule,
     ScheduleModule.forRoot({ cronJobs: true }),
     TaskModule,
     AuthModule,
