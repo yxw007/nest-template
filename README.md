@@ -70,4 +70,4 @@ Read more:
 
 ## 📄 License
 
-nest-template 是在 MIT 许可证下发布的。详情请见 [LICENSE](./LICENSE) 文件。
+nest-template is released under the MIT license. See the [LICENSE](./LICENSE) file.
