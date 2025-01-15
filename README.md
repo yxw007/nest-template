@@ -13,12 +13,13 @@ English | [简体中文](README_zh-CN.md)
 ## ✨ Features
 
 - [x] Support: Multi-environment configuration
+- [x] Support: Log blocker and HTTP exception blocker
+- [x] Support: HTTP exception filter
+- [x] Support：Scheduled tasks
+- [x] Support: Cache
 - [x] Integration: JWT
-- [x] Supported: Log blocker and HTTP exception blocker
-- [x] Supported: HTTP exception filter
 - [x] Integration: MySQL
 - [x] Integration: Request parameter verification
-- [x] In the tank：Scheduled tasks
 - [ ] Perfect: Test cases
 
 ## 🛠️ Install dependencies
